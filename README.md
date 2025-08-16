@@ -25,7 +25,6 @@ Aplikasi Todo List sederhana berbasis PHP dan session, dibuat untuk latihan dasa
 ## Catatan
 
 - Tidak menggunakan database, hanya session.
-- Untuk reset data, aktifkan tombol "Reset" di bagian komentar kode.
 - Fitur edit dan hapus dapat digunakan langsung di daftar tugas.
 
 ## Kontributor
