@@ -41,6 +41,8 @@
                     "status" => "belum"
                 ];
             }
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit;
         }
 
         function getNewId(): int {
@@ -55,9 +57,9 @@
             $id = (int)$_POST['id'];
             $status = $_POST['status'] === "true" ? "selesai" : "belum";
 
-            foreach ($_SESSION['tasks'] ?? [] as &$task) {
+            foreach ($_SESSION['tasks'] ?? [] as $key => &$task) {
                 if ($task['id'] === $id) {
-                    $task['status'] = $status;
+                    $_SESSION['tasks'][$key]['status'] = $status;
                     break;
                 }
             }
@@ -69,7 +71,7 @@
         // Proses hapus
         if (isset($_POST['delete'])) {
             $id = (int)$_POST['id'];
-            $_SESSION['tasks'] = array_filter($_SESSION['tasks'], fn($task) => $task['id'] !== $id);
+            $_SESSION['tasks'] = array_values(array_filter($_SESSION['tasks'], fn($task) => $task['id'] !== $id));
         }
 
         // Proses edit
